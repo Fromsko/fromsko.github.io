@@ -26,14 +26,10 @@ jobs:
           # 选择要使用的 node 版本
           node-version: 20
 
-
-
-
       # 运行构建脚本
       # Run the build script
       - name: Build VuePress site
-        run: bun run docs:build
-
+        run: npm i -g vuepress && npm i && npm run docs:build
 
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
