@@ -1,0 +1,32 @@
+{
+  "name": "fromsko-的笔记库",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Fromsko、笔记库、日常记录",
+  "packageManager": "bun@1.1.27",
+  "author": "Fromsko <99723642+Fromsko@users.noreply.github.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "^18.20.0 || >=20.0.0"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:dev-clean": "vuepress dev docs --clean-cache --clean-temp",
+    "docs:build": "vuepress build docs --clean-cache --clean-temp",
+    "docs:preview": "http-server docs/.vuepress/dist",
+    "vp-update": "bun dlx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.18",
+    "http-server": "^14.1.1",
+    "sass-embedded": "^1.80.3",
+    "typescript": "^5.6.3",
+    "vue": "^3.5.12",
+    "vuepress": "2.0.0-rc.18",
+    "vuepress-plugin-md-enhance": "^2.0.0-rc.59",
+    "vuepress-theme-plume": "1.0.0-rc.112"
+  },
+  "dependencies": {
+    "swiper": "^11.1.14"
+  }
+}
