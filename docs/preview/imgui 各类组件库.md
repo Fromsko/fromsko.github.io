@@ -953,3 +953,187 @@ void TextCentered(std::string text) {
     ImGui::Text(text.c_str());
 }
 ```
+
+---
+
+
+
+## `ImGui::SetCursorPos` 
+
+> 用于在 ImGui 窗口内精确定位下一个绘制的元素的位置。它接受一个 `ImVec2(x, y)` 参数，指定窗口内的相对坐标位置，以左上角为原点 `(0, 0)`。
+
+### 使用方式
+`ImGui::SetCursorPos(ImVec2(x, y));`  
+
+- **x**：相对于窗口左边的水平偏移。
+- **y**：相对于窗口顶部的垂直偏移。
+
+### 示例
+假设有以下内容，希望将文字和按钮在窗口内的不同位置渲染：
+
+```cpp
+if (ImGui::Begin("Example Window")) {
+    // 将光标定位到窗口内 (50, 30) 位置处
+    ImGui::SetCursorPos(ImVec2(50, 30));
+    ImGui::Text("This text is positioned at (50, 30)");
+
+    // 将光标定位到窗口内 (100, 70) 位置处
+    ImGui::SetCursorPos(ImVec2(100, 70));
+    if (ImGui::Button("Click Me")) {
+        // 按钮点击逻辑
+    }
+
+    ImGui::End();
+}
+```
+
+### 使用 `SetCursorPos` 实现精确布局
+可以组合使用 `SetCursorPos` 来控制每个元素的位置，从而实现自由布局。例如，如果希望将一个文本和一个按钮在同一行显示：
+
+```cpp
+if (ImGui::Begin("Example Window")) {
+    // 定位文本
+    ImGui::SetCursorPos(ImVec2(20, 40));
+    ImGui::Text("Label:");
+
+    // 定位按钮
+    ImGui::SetCursorPos(ImVec2(100, 40));  // 在同一水平线上
+    ImGui::Button("Submit");
+
+    ImGui::End();
+}
+```
+
+### 调整坐标实现动态布局
+也可以通过窗口的尺寸、内容大小等动态调整 `SetCursorPos` 的值，以适应窗口大小的变化。例如，通过 `ImGui::GetWindowSize` 获取窗口宽度，可以将元素居中对齐：
+
+```cpp
+ImVec2 window_size = ImGui::GetWindowSize();
+float centered_x = (window_size.x - button_width) * 0.5f;
+float centered_y = (window_size.y - button_height) * 0.5f;
+
+ImGui::SetCursorPos(ImVec2(centered_x, centered_y));
+ImGui::Button("Centered Button");
+```
+
+通过这种方式，可以将 ImGui 的组件灵活定位在窗口中的指定位置。
+
+---
+
+## 按钮效果
+
+在 ImGui 中，可以使用颜色栈 (`ImGui::PushStyleColor` 和 `ImGui::PopStyleColor`) 来临时修改控件的颜色。通过检测按钮的鼠标状态，我们可以在按钮被悬停时更改颜色，从而实现鼠标悬停时变色的效果。
+
+以下是一个简单的实现示例：
+
+```cpp
+#include "imgui.h"
+
+void DrawButtonWithHoverEffect(const char* label) {
+    // 设置按钮默认和悬停时的颜色
+    ImVec4 defaultColor = ImVec4(0.2f, 0.5f, 0.8f, 1.0f); // 默认颜色
+    ImVec4 hoverColor = ImVec4(0.4f, 0.7f, 1.0f, 1.0f);   // 悬停颜色
+
+    // 判断按钮的悬停状态，应用不同的颜色
+    if (ImGui::IsItemHovered()) {
+        ImGui::PushStyleColor(ImGuiCol_Button, hoverColor);  // 按钮悬停时的颜色
+    } else {
+        ImGui::PushStyleColor(ImGuiCol_Button, defaultColor); // 按钮默认颜色
+    }
+
+    // 绘制按钮
+    ImGui::Button(label);
+
+    // 恢复按钮颜色
+    ImGui::PopStyleColor();
+}
+```
+
+### 实现原理
+1. **设置颜色**：`defaultColor` 定义按钮的默认颜色，`hoverColor` 定义鼠标悬停时的颜色。
+2. **检测悬停状态**：使用 `ImGui::IsItemHovered()` 判断按钮是否被悬停。若为真，使用 `PushStyleColor` 将按钮颜色改为 `hoverColor`。
+3. **绘制按钮并恢复颜色**：调用 `ImGui::Button` 绘制按钮。绘制完成后，调用 `PopStyleColor` 恢复按钮的默认颜色。
+
+通过这种方式，可以在不影响其他控件的前提下，为单个按钮实现悬停变色效果。
+
+### 实现的效果
+
+```cpp
+#pragma once
+#ifndef SK_BUTTON_H
+#define SK_BUTTON_H
+
+#include "../ImGui/imgui.h"
+#include <functional>
+#include <chrono>
+#include <thread>
+
+class LoadingButton {
+public:
+    LoadingButton(const char* label, float loadingDuration = 2.0f)
+        : label(label), loadingDuration(loadingDuration), isLoading(false), loadingProgress(0.0f) {}
+
+    // 显示按钮并实现加载效果
+    void ShowButton(std::function<void()> onClick, std::function<void()> onComplete) {
+        // 如果当前在加载状态，绘制加载条
+        if (isLoading) {
+            ImGui::ProgressBar(loadingProgress, ImVec2(100.0f, 0.0f));
+            UpdateLoading(onComplete);  // 更新加载进度
+        }
+        else {
+            // 绘制按钮并检查点击事件
+            if (ImGui::Button(label)) {
+                StartLoading(onClick);
+            }
+        }
+    }
+
+private:
+    const char* label;
+    bool isLoading;
+    float loadingDuration;
+    float loadingProgress;
+    std::chrono::time_point<std::chrono::steady_clock> startTime;
+
+    // 开始加载并调用点击回调
+    void StartLoading(std::function<void()> onClick) {
+        isLoading = true;
+        loadingProgress = 0.0f;
+        startTime = std::chrono::steady_clock::now();
+        if (onClick) {
+            onClick();  // 调用前回调函数
+        }
+    }
+
+    // 更新加载进度
+    void UpdateLoading(std::function<void()> onComplete) {
+        auto currentTime = std::chrono::steady_clock::now();
+        float elapsedTime = std::chrono::duration<float>(currentTime - startTime).count();
+        loadingProgress = elapsedTime / loadingDuration;
+
+        if (loadingProgress >= 1.0f) {
+            loadingProgress = 1.0f;
+            isLoading = false;
+            if (onComplete) {
+                onComplete();  // 加载完成后调用回调函数
+            }
+        }
+    }
+};
+
+#endif // SK_BUTTON_H
+```
+
+
+
+```cpp
+ImDrawList* draw_list = ImGui::GetWindowDrawList();
+ImVec2 p1 = ImVec2(106.977 + ImGui::GetCursorScreenPos().x, 26.357 + ImGui::GetCursorScreenPos().y);
+ImVec2 p2 = ImVec2(p1.x + 333.333, p1.y + 229.457);
+if (false) {
+    draw_list->AddRectFilled(p1, p2, IM_COL32(130, 182, 98, 255), 28.837);
+} else {
+    draw_list->AddRect(p1, p2, IM_COL32(130, 182, 98, 255), 28.837, 0, 1.0f);
+}
+```
+

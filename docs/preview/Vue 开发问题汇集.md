@@ -145,3 +145,38 @@ h2 {
   background-color: yellow;
 }
 ```
+
+---
+
+## vscode 使用vite.end.d.ts导致跳转失败
+
+
+
+## 配置 tailwindcss.{ts|js}
+
+```ts
+import type { Config } from 'tailwindcss'
+
+export default {
+  content: [],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+} satisfies Config
+```
+
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+```shell
+tailwindcss init --ts
+```
