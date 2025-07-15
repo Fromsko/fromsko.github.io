@@ -6,9 +6,6 @@ permalink: /article/1wvbljg5/
 # Lua 设计模式
 
 
-
-
-
 ### 实用
 
 #### `柯里化`

@@ -3,21 +3,18 @@ title: Base
 createTime: 2024/11/03 00:07:11
 permalink: /article/lljgpu2k/
 ---
+
 # 鸿蒙开发
 
 > ArjTs 是 HarmonyOS 推荐的开发语言，是 Ts 配合 ArkUI 推出的开发语言
 >
 > 拓展：
 >
-> + 声明式 UI
-> + 状态管理
-> + 并发任务
+> - 声明式 UI
+> - 状态管理
+> - 并发任务
 
 ## 目录讲解
-
-![image-20241103000731644](../../../../../../../AppData/Roaming/Typora/typora-user-images/image-20241103000731644.png)
-
-----
 
 ### 第一个页面
 
@@ -80,18 +77,13 @@ struct Index {
 }
 ```
 
-----
+---
 
 ### 构建第二个页面
 
 ```ts
+
 ```
-
-
-
-
-
-
 
 ### Ts 语法
 
@@ -99,8 +91,8 @@ struct Index {
 
 ```ts
 enum SexValue {
-    MAIL = '男',
-    FEMAIl = '女'
+  MAIL = "男",
+  FEMAIl = "女",
 }
 ```
 
@@ -109,101 +101,101 @@ enum SexValue {
 > 运行的时候暂时不知道是什么类型
 
 ```ts
-let notSure: unknown = 4;
+let notSure: unknown = 4
 ```
 
 #### 联合类型
 
 ```ts
-let myF: string | number = 1;
+let myF: string | number = 1
 ```
 
 #### 循环
 
 ```ts
-let i: number;
-for (i = 1; i<=10;i++){
-    console.log(i)
+let i: number
+for (i = 1; i <= 10; i++) {
+  console.log(i)
 }
 
-let j:any;
+let j: any
 let nums: Array<number> = [10, 20]
-for (j in nums){
-    console.log(nums[j])
+for (j in nums) {
+  console.log(nums[j])
 }
 ```
 
 #### 函数
 
 ```ts
-function fn1(){
-    console.log("fn1")
+function fn1() {
+  console.log("fn1")
 }
 
 const fn2 = () => {
-    console.log("fn2")
+  console.log("fn2")
 }
 
 const fn3 = (arg: number): number => {
-    console.log(arg)
-    return arg
+  console.log(arg)
+  return arg
 }
 
 const fn4 = (name: string, arg?: number): string => {
-    return name
+  return name
 }
 
-const fn5 = (name: string, ...args: array<string>):array<string> | null => {
-    console.log(name)
-    
-    if (args.length() != 0) {
-        return null
-    }
-    return args
+const fn5 = (name: string, ...args: array<string>): array<string> | null => {
+  console.log(name)
+
+  if (args.length() != 0) {
+    return null
+  }
+  return args
 }
 ```
 
 #### 类 class
 
-> + 创建类 Class
-> + 使用类的实例 demo()
-> + 成员方法
-> + 成员属性
+> - 创建类 Class
+> - 使用类的实例 demo()
+> - 成员方法
+> - 成员属性
 
 ```ts
 class Animal {
-    constructor(name: string) {
-        this.appName = name
-    }
-    
-    public eat() {
-        console.log(`${this.name} eating!`)
-    }
-    
-    public run() {
-        console.log("Running!")
-    }
-    
-    public sleep(){
-        console.log("Sleep")
-    }
-    
-   	private instance: string;
-	private appName: string;
+  constructor(name: string) {
+    this.appName = name
+  }
+
+  public eat() {
+    console.log(`${this.name} eating!`)
+  }
+
+  public run() {
+    console.log("Running!")
+  }
+
+  public sleep() {
+    console.log("Sleep")
+  }
+
+  private instance: string
+  private appName: string
 }
 
 // 继承
 class Cat extends Animal {
-    constructor(name: string) {
-        // 调用父类的构造函数
-        super(name)
-    }
-    
-    public todo() {
-        this.eat()
-        this.run()
-        this.sleep()
-    }
+  constructor(name: string) {
+    // 调用父类的构造函数
+    super(name)
+  }
+
+  public todo() {
+    this.eat()
+    this.run()
+    this.sleep()
+  }
 }
 ```
 
@@ -214,25 +206,25 @@ class Cat extends Animal {
 > 本质：提供了一个函数、用来一个个访问内部元素的函数 Symbol.iterator
 
 ```ts
-let str1 = 'aaa'
+let str1 = "aaa"
 
 // 遍历元素
 for (let i of str1) {
-    console.log(i)
+  console.log(i)
 }
 
 // 遍历下标
 for (let j in str1) {
-    console.log(j)
+  console.log(j)
 }
 
 // 遍历 map
 let map1 = new Map<string, string>()
-map1.set('a', 1)
-map2.set('b', 2)
+map1.set("a", 1)
+map2.set("b", 2)
 
 for (let m of map1) {
-    console.log(m)
+  console.log(m)
 }
 // ['a', 1]
 // ['b', 2]
@@ -241,7 +233,7 @@ for (let m of map1) {
 let demo: array<srting> = [1, 2, 3, 4]
 
 demo.foreach((item, index) => {
-    console.log(item, index)
+  console.log(item, index)
 })
 ```
 
@@ -255,25 +247,25 @@ export {
 }
 ```
 
-----
+---
 
 ### ArkTs 语法
 
 > 基础语法
 >
-> + 声明式 UI 描述
-> + 自定义组件
-> + 动态扩展 UI 元素
+> - 声明式 UI 描述
+> - 自定义组件
+> - 动态扩展 UI 元素
 >
 > 状态管理
 >
-> + 父子组件传递、爷孙组件传递
-> + 只读的单项传递、可读的双向传递
+> - 父子组件传递、爷孙组件传递
+> - 只读的单项传递、可读的双向传递
 >
 > 渲染控制
 >
-> + 从数据源中迭代获取数据，并在迭代过程中创建组件
-> + 数据懒加载、按需读取并创建组件
+> - 从数据源中迭代获取数据，并在迭代过程中创建组件
+> - 数据懒加载、按需读取并创建组件
 
 #### 基础修改
 
@@ -343,10 +335,3 @@ struct Index {
   }
 }
 ```
-
-#### 基础组件
-
-
-
-
-

@@ -3,6 +3,7 @@ title: mybatis
 createTime: 2024/10/25 18:33:03
 permalink: /article/a276sko0/
 ---
+
 # Mybatis 讲解
 
 ## 配置文件
@@ -15,7 +16,7 @@ permalink: /article/a276sko0/
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-    
+
 </configuration>
 ```
 
@@ -278,22 +279,18 @@ public record User(Integer id, String username) {}
 
 ### 内置别名
 
-![image-20241025210430248](C:\Users\16143\AppData\Roaming\Typora\typora-user-images\image-20241025210430248.png)
-
 ---
-
-
 
 ### 类型处理器
 
 > Mybatis 内置类型处理器用于完成 列 和 对象属性的数据类型的对应关系
 
-+ 当内置的所有处理器都不能对应 列 和 属性 的数据类型时，Mybatis 将异常抛出
+- 当内置的所有处理器都不能对应 列 和 属性 的数据类型时，Mybatis 将异常抛出
 
 解决：
 
-+ 调整 列 或者 属性 的数据类型，使用 Mybatis 推荐的类型
-+ 自行实现类型处理器并注册到 mybatis 框架中 【局部和全局注册器】
+- 调整 列 或者 属性 的数据类型，使用 Mybatis 推荐的类型
+- 自行实现类型处理器并注册到 mybatis 框架中 【局部和全局注册器】
 
 #### 内置处理器
 
@@ -301,14 +298,12 @@ public record User(Integer id, String username) {}
 >
 > 都会用类型处理器将获取到的值以合适的方式转换成 Java 类型。
 
-![image-20241025211755309](C:\Users\16143\AppData\Roaming\Typora\typora-user-images\image-20241025211755309.png)
-
 #### 自定义类型处理器
 
 > 内置的 BaseTypeHandler 抽象用于实现自定义数据类型对应处理
 
-+ BaseTypeHandler
-+ @MappedJdbcTypes(values = 数据库类型)
+- BaseTypeHandler
+- @MappedJdbcTypes(values = 数据库类型)
 
 ```java
 package org.example.mybatis.type;
@@ -356,30 +351,21 @@ public class GenderTypeHandler extends BaseTypeHandler<Gender> {
 
 > 创建结果对象新实例的时候，会使用一个内置对象工厂示例来完成实例化工作
 >
-> + 仅仅做的是实例化目标类，通过无参或者有参来构造
-> + 如果想要覆盖默认行为则，可以创建自己的对象工厂来实现
+> - 仅仅做的是实例化目标类，通过无参或者有参来构造
+> - 如果想要覆盖默认行为则，可以创建自己的对象工厂来实现
 
 ### 插件
 
 > mybatis 的操作过程中，实现了对各个阶段的埋点，能够使用拦截器在指定阶段来执行代码
 
-
-
-
-
-
-
-
-
 ## 错误信息
 
 ### 数据库访问异常
 
-> Exception in thread "main" org.apache.ibatis.exceptions.PersistenceException: 
+> Exception in thread "main" org.apache.ibatis.exceptions.PersistenceException:
 >
-> Error querying database.  Cause: java.sql.SQLException: Access denied for user 'mybatiss'@'172.18.0.1' (using password: YES)
+> Error querying database. Cause: java.sql.SQLException: Access denied for user 'mybatiss'@'172.18.0.1' (using password: YES)
 
-+ 账号密码错误
+- 账号密码错误
 
 ---
-

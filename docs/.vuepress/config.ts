@@ -1,23 +1,23 @@
-import { viteBundler } from '@vuepress/bundler-vite'
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
+import { viteBundler } from "@vuepress/bundler-vite"
+import { defineUserConfig } from "vuepress"
+import { plumeTheme } from "vuepress-theme-plume"
 
 export default defineUserConfig({
-  base: '/',
-  lang: 'zh-CN',
+  base: "/",
+  lang: "zh-CN",
   locales: {
-    '/': {
-      title: 'Fromsko 的笔记库',
-      lang: 'zh-CN',
-      description: 'Fromsko、笔记库、日常记录',
-    }
+    "/": {
+      title: "Fromsko 的个人知识库",
+      lang: "zh-CN",
+      description: "Fromsko、笔记库、日常记录",
+    },
   },
 
   bundler: viteBundler(),
 
   theme: plumeTheme({
     // 添加您的部署域名
-    hostname: 'https://fromsko.github.io',
+    hostname: "https://blog.nextcore.work",
 
     plugins: {
       /**
@@ -26,7 +26,27 @@ export default defineUserConfig({
        */
       shiki: {
         //  强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-        languages: ['json', 'scss', 'sass', 'css', 'c', 'jsx', 'shell', 'bash', 'typescript', 'javascript', "java", "cpp", "go"],
+        languages: [
+          "json",
+          "scss",
+          "sass",
+          "css",
+          "c",
+          "jsx",
+          "kotlin",
+          "yaml",
+          "shell",
+          "bash",
+          "typescript",
+          "javascript",
+          "java",
+          "cpp",
+          "go",
+          "lua",
+          "html",
+          "markdown",
+          "xml",
+        ],
       },
 
       /**
@@ -35,9 +55,9 @@ export default defineUserConfig({
        */
       markdownEnhance: {
         include: true,
-        // align: true, // 对齐容器
+        tasklist: true, // 任务列表语法
+        align: true, // 对齐容器
         // mark: true, // 标记语法
-        // tasklist: true, // 任务列表语法
         // attrs: true, // 属性语法
         // sup: true, // 上标语法
         // sub: true, // 下标语法

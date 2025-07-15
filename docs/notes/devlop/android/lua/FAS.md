@@ -1009,7 +1009,7 @@ return true;
 var d=document;var s=d.createElement('script');s.setAttribute('src', 'https://greasyfork.org/scripts/368754-%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A-%E6%AF%94%E8%BE%83%E6%9A%B4%E5%8A%9B-%E6%85%8E%E7%94%A8-v0-1/code/%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A(%E6%AF%94%E8%BE%83%E6%9A%B4%E5%8A%9B%EF%BC%8C%E6%85%8E%E7%94%A8)V01.user.js');d.head.appendChild(s);
 ```
 
-<lua>加入收藏代码
+加入收藏代码
 ```lua
 --代码分三部分
 --第一部分填入 程序启动事件
@@ -1608,7 +1608,7 @@ end
 end
 ```
 
-<fusion app>收藏与历史记录
+收藏与历史记录
 ```lua
 --第一部分 程序启动时会执行的事件
 --程序启动时会执行的事件
@@ -2202,8 +2202,7 @@ File(txtroute).createNewFile()
 nr=io.open(txtroute):read("*a")
 弹出消息(nr)
 ```
-
-<fusion app>历史记录
+历史记录
 ```lua
 --这个代码分三部分
 --第一部分 填入收到新标题
@@ -2389,7 +2388,7 @@ end
 show_hst()
 ```
 
-<js>去悬浮窗广告动态类JS加载广告
+去悬浮窗广告动态类JS加载广告
 ```lua
 /**
  * 禁用动态添加脚本，防止广告加载

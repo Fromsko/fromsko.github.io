@@ -1,3 +1,9 @@
+---
+title: Oracle-数据库笔记
+createTime: 2025/07/15 18:58:15
+permalink: /article/j3tp1cnz/
+---
+
 # Oracle
 
 ## 0 练习题目
@@ -23,15 +29,11 @@ from SCORES
 group by NAME;
 ```
 
-## 1 sys用户登入
+## 1 sys 用户登入
 
-### 1.1 navicat连接
+### 1.1 navicat 连接
 
-![image-20230728170123756](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230728170123756.png)
-
-### 1.2 sql plus连接
-
-
+### 1.2 sql plus 连接
 
 用户名：sys
 
@@ -85,7 +87,7 @@ grant 实体权限列表 on 表名称 to 用户名;
 
 - `GRANT`: 这是授予权限的关键字。
 
-- `CONNECT`: 这是一种预定义的数据库角色，授予该角色给用户后，用户可以连接到数据库。拥有 `CONNECT` 权限的用户可以使用 SQL*Plus 等工具连接到数据库，但不能访问其他特权。
+- `CONNECT`: 这是一种预定义的数据库角色，授予该角色给用户后，用户可以连接到数据库。拥有 `CONNECT` 权限的用户可以使用 SQL\*Plus 等工具连接到数据库，但不能访问其他特权。
 
 - `RESOURCE`: 这是另一种预定义的数据库角色，授予该角色给用户后，用户获得 `CONNECT` 权限的所有特权，同时还可以创建表、视图、序列和其他数据库对象。
 
@@ -100,8 +102,6 @@ grant 实体权限列表 on 表名称 to 用户名;
 ```sql
 grant dba to hzy
 ```
-
-
 
 ## 4 创建表
 
@@ -129,8 +129,6 @@ patient_id number primary key
 source_id number constraint source_register references number_source(source_id)
 ```
 
-
-
 ### 4.4 查看表结构
 
 ```sql
@@ -142,7 +140,7 @@ DESCRIBE employees;
 第一步 赋予权限
 
 ```sql
-grant select on table_name to user_name 
+grant select on table_name to user_name
 ```
 
 第二步 查询
@@ -161,8 +159,6 @@ ALTER TABLE employees RENAME COLUMN old_column_name TO new_column_name;
 -- 增加一个字段
 alter table  number_source_backups  add user_name varchar2(10);
 ```
-
-
 
 ## 5 插入数据
 
@@ -184,9 +180,9 @@ into student(id,name) values(2,'李四')
 select 1 from dual;
 ```
 
-特别说明：dual是在oracle中创建的一个辅助表，你可以自主的新建成任意的表名，biao1,mytable都行
+特别说明：dual 是在 oracle 中创建的一个辅助表，你可以自主的新建成任意的表名，biao1,mytable 都行
 
-select 1 from dual这句话不能丢，会报语法错误，而且这句话的作用也仅仅是让sql语法正确。
+select 1 from dual 这句话不能丢，会报语法错误，而且这句话的作用也仅仅是让 sql 语法正确。
 
 ## 6 DQL(数据库查询语言)
 
@@ -231,7 +227,7 @@ select distinct e.deptno from emp e;
 逻辑运算符：and、or、not
 模糊运算符：
 
-- like：%任意多个字符、_任意单个字符、如果有特殊字符，需要使用escape转义
+- like：%任意多个字符、\_任意单个字符、如果有特殊字符，需要使用 escape 转义
 
 - between and
 
@@ -265,14 +261,12 @@ minus
 select t.* rownum from student t rownum<=6
 ```
 
-
-
 ### 6.7 排序查询
 
 ```sql
 --按照员工主管编号由高到低进行排序，NULL值放到最后边
-select * 
-from SCORES 
+select *
+from SCORES
 order by SCORE desc nulls first ;
 ```
 
@@ -280,9 +274,9 @@ order by SCORE desc nulls first ;
 
 ```sql
 --统计每个部门有多少个人
-select 
-deptno as "部门",count(*) as "人数" 
-from emp 
+select
+deptno as "部门",count(*) as "人数"
+from emp
 group by deptno;
 ```
 
@@ -425,8 +419,6 @@ group by deptno;
    select trunc(sysdate) from dual;
    ```
 
-   
-
 ### 7.5 其他函数
 
 1. NVL() 空值处理函数
@@ -491,22 +483,16 @@ group by deptno;
    select * from 成绩表;
    ```
 
-   ![image-20231010163443821](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20231010163443821.png)
-
    ```sql
    select *
      from 成绩表 pivot ( sum(成绩) for 科目 in ('历史' as 语 , '数学' as 数, '英语' as 外) )
    ```
 
-   ![image-20231010163529650](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20231010163529650.png)
-
-   
-
 ## 8 事务
 
 ### 8.1 含义
 
-一条或多条sql语句组成一个执行单位，一组sql语句要么都执行要么都不执行
+一条或多条 sql 语句组成一个执行单位，一组 sql 语句要么都执行要么都不执行
 
 ### 8.2 特新(ACID)
 
@@ -538,9 +524,9 @@ savepoint 回滚点名;
 
 ## 9 序列
 
-### 9.1含义
+### 9.1 含义
 
-序列是Oracle数据库中特有的，使用序列可以生成类似于 auto_increment 这种ID自动增长 1,2,3,4,5… 的效果
+序列是 Oracle 数据库中特有的，使用序列可以生成类似于 auto_increment 这种 ID 自动增长 1,2,3,4,5… 的效果
 
 ### 9.2 语法
 
@@ -571,14 +557,14 @@ select auto_increment_seq.nextval from dual;  -- nextval 下一个值
 select auto_increment_seq.currval from dual;  -- currval 当前值
 ```
 
-## 10 PLSQL编程
+## 10 PLSQL 编程
 
 ### 10.1 格式
 
 ```
 declare
   --声明变量
-          
+
 begin
   --业务逻辑
 
@@ -597,13 +583,11 @@ end;
 /
 ```
 
-
-
 ### 10.2 变量
 
 ```sql
--- Created on 2023/7/29 by 易 
-declare 
+-- Created on 2023/7/29 by 易
+declare
   v_name varchar(20) := 'zhangsan';
   i integer;
   address varchar(20);
@@ -622,11 +606,11 @@ end;
 
 ```sql
 if 条件1 then
-     
+
 elsif 条件2 then
-       
-else 
-     
+
+else
+
 end if;
 ```
 
@@ -657,8 +641,6 @@ begin
         end loop;
 end;
 ```
-
-
 
 ## 11 存储过程
 
@@ -746,7 +728,7 @@ create or replace procedure O_people(i_id in people.id%TYPE) as
 begin
     select name into o_name from people where id = i_id;
     dbms_output.put_line('姓名：'|| o_name);
- 
+
 end O_people;
 ```
 
@@ -760,7 +742,6 @@ begin
 end O_people2;
 ```
 
-
 ### 11.4 如何调用
 
 方式一 (sql puls)
@@ -773,12 +754,6 @@ SQL> begin
 ```
 
 方式二(SQL Developer)
-
-![image-20230730202044630](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230730202044630.png)
-
-结果：
-
-![image-20230730202115101](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230730202115101.png)
 
 方式三(java)
 
@@ -834,9 +809,7 @@ public class CallStoredProcedure {
 
 运行结果：
 
-![image-20230730205813484](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230730205813484.png)
-
-### 11.5 如何处理json数据
+### 11.5 如何处理 json 数据
 
 ```sql
 CREATE OR REPLACE PROCEDURE Process_JSON_Data (
@@ -868,7 +841,7 @@ BEGIN
 END;
 ```
 
-### 11.6 处理xml数据格式
+### 11.6 处理 xml 数据格式
 
 ```xml
 <book>
@@ -898,13 +871,11 @@ EXCEPTION
 END get_book_title;
 ```
 
-
-
 ### 11.7 嵌套调用存储过程
 
 ```sql
 create or replace procedure test01
-as 
+as
 begin
   DBMS_OUTPUT.PUT_LINE('this is test01');
 END;
@@ -912,7 +883,7 @@ END;
 
 -- 判断id是否为1输出test01，则输出test02
 create or replace procedure test02(id in number)
-as 
+as
 begin
   if id=1 then
     test01;
@@ -925,13 +896,11 @@ end;
 commit;
 ```
 
-
-
 ## 12 视图
 
 ### 12.1 什么是视图
 
-视图（View）是一个虚拟的表，是由一个或多个基本表（或其他视图）的查询结果定义的。视图并不实际存储数据，而是根据定义的查询语句在查询时动态生成结果。用户可以像操作普通表一样，对视图进行查询、插入、更新和删除操作，但实际上这些操作会映射到视图所基于的基本表上，说白了就是对一个sql语句的封装，视图可以赋予只读权限。
+视图（View）是一个虚拟的表，是由一个或多个基本表（或其他视图）的查询结果定义的。视图并不实际存储数据，而是根据定义的查询语句在查询时动态生成结果。用户可以像操作普通表一样，对视图进行查询、插入、更新和删除操作，但实际上这些操作会映射到视图所基于的基本表上，说白了就是对一个 sql 语句的封装，视图可以赋予只读权限。
 
 ### 12.2 为什么要用视图（好处）？
 
@@ -955,8 +924,6 @@ commit;
    -- 赋予只读
    ```
 
-   
-
 3. **简化应用程序开发：** 视图可以为应用程序提供一个简单的数据接口，屏蔽底层表结构的变化，使得应用程序的开发更加灵活和容易维护。应用程序只需与视图进行交互，而不必关心底层表的变化。
 
 4. **数据的分层和模块化：** 视图可以将数据库的数据分层和模块化，将复杂的数据操作拆分成多个视图，使得数据库的管理和维护更加简单和清晰。
@@ -973,7 +940,7 @@ commit;
 create view 视图名称
 as 查询语句
 -- 视图权限 表示仅读权限
-[with read only]; 
+[with read only];
 ```
 
 删除视图
@@ -990,13 +957,11 @@ as 查询语句
 [with read only];
 ```
 
-
-
 ## 13 索引
 
 ### 13.1 什么是索引
 
-*索引是一种数据结构，用于加快数据库表的查询速度。它可以理解为类似于书的索引，提供了一种快速查找表中数据的方法，避免了全表扫描的开销。索引存储着表中某一列或多列的值以及指向对应行数据的指针，使得数据库系统能够更快速地定位和检索符合特定条件的记录。*
+_索引是一种数据结构，用于加快数据库表的查询速度。它可以理解为类似于书的索引，提供了一种快速查找表中数据的方法，避免了全表扫描的开销。索引存储着表中某一列或多列的值以及指向对应行数据的指针，使得数据库系统能够更快速地定位和检索符合特定条件的记录。_
 
 ### 13.2 使用索引的好处和要注意的地方
 
@@ -1016,7 +981,7 @@ as 查询语句
 
 要注意的地方：
 
-​    虽然索引带来了诸多好处，但它们也需要适度使用。过多或不恰当的索引可能会增加数据更新的开销，占用额外的存储空间，甚至降低查询性能。因此，在设计数据库时，需要根据实际需求和查询模式，选择合适的字段来创建索引，以充分发挥索引的优势，并避免其带来的不利影响。
+​ 虽然索引带来了诸多好处，但它们也需要适度使用。过多或不恰当的索引可能会增加数据更新的开销，占用额外的存储空间，甚至降低查询性能。因此，在设计数据库时，需要根据实际需求和查询模式，选择合适的字段来创建索引，以充分发挥索引的优势，并避免其带来的不利影响。
 
 ### 13.3 索引的分类
 
@@ -1024,32 +989,32 @@ as 查询语句
 
    建立原则：
 
-   - 在WHERE子句中最频繁使用的字段 。
+   - 在 WHERE 子句中最频繁使用的字段 。
    - 联接语句中的连接字段。
    - 选择高选择性的字段(即如果很少的字段拥有相同值,即有很多独特值,可以快速查找到所需数据的字段) .
-   - 在联机事务处理(OLTP)环境下,所由并发性非常高,索引经常被修改,可以建B-TREE索引，不应该建位图索引 。
+   - 在联机事务处理(OLTP)环境下,所由并发性非常高,索引经常被修改,可以建 B-TREE 索引，不应该建位图索引 。
    - 不要在经常被修改的字段上建索引，可建函数索引。
    - 不要在有用到函数的字段上建索引。
-   - B-Tree索引不包含null的数据。
+   - B-Tree 索引不包含 null 的数据。
 
 2. 复合索引
 
    建立原则：
 
-   - WHERE子句中使用到的字段需要是复合索引的前导字段，若仅对后面的任意列执行搜索时，则应该创建另一个仅包含第二列的索引。
-   - 如果某个字段在WHERE子句中最频繁使用,则在建立复合索引时,考虑把这个字段排在第一位(在CREATE INDEX语句中)
-   - 如果所有的字段在WHERE子句中使用频率相同,则将低选择性列排在最前面,将选择性较强的列排在最后面
-   - 如果所有的字段在WHERE子句中使用频率相同,如果数据在物理上是按某一个字段排序的,则考虑将这个字段放在复合索引的第一位 。
+   - WHERE 子句中使用到的字段需要是复合索引的前导字段，若仅对后面的任意列执行搜索时，则应该创建另一个仅包含第二列的索引。
+   - 如果某个字段在 WHERE 子句中最频繁使用,则在建立复合索引时,考虑把这个字段排在第一位(在 CREATE INDEX 语句中)
+   - 如果所有的字段在 WHERE 子句中使用频率相同,则将低选择性列排在最前面,将选择性较强的列排在最后面
+   - 如果所有的字段在 WHERE 子句中使用频率相同,如果数据在物理上是按某一个字段排序的,则考虑将这个字段放在复合索引的第一位 。
    - 在主键索引(复合主键)中列的顺序被强制为与列在表定义中出现的顺序相同，这与 PRIMARY KEY 约束中指定的列顺序无关.
    - 索引列的排序方式必须与 ORDER BY 子句完全相同或完全相反。否则不能得到性能优化。
 
 3. 位图索引
 
-   位图索引主要针对大量相同值的列而创建(例如：类别，操作员，部门ID,库房ID等)。
+   位图索引主要针对大量相同值的列而创建(例如：类别，操作员，部门 ID,库房 ID 等)。
 
-   索引块的一个索引行中存储键值和起止Rowid,以及这些键值的位置编码。
+   索引块的一个索引行中存储键值和起止 Rowid,以及这些键值的位置编码。
 
-   位图索引存储数据的方式相对于B-Tree索引,占用的空间非常小,创建时不需要排序，定位存储，创建和使用非常快
+   位图索引存储数据的方式相对于 B-Tree 索引,占用的空间非常小,创建时不需要排序，定位存储，创建和使用非常快
 
 4. 函数索引
 
@@ -1120,13 +1085,13 @@ AFTER DELETE：在从表中删除记录之后触发。
 ```sql
 create trigger 触发器名称
 before|after
-insert|update|delete 
+insert|update|delete
 on 表名称
 [for each row]--行级触发器
 declare
  --声明部分
 begin
- --业务逻辑 
+ --业务逻辑
 end;
 ```
 
@@ -1156,13 +1121,10 @@ end;
 /;
 ```
 
-对class1表经行操作，会把记录插入到info_log表中
+对 class1 表经行操作，会把记录插入到 info_log 表中
 
-![image-20230801124357739](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230801124357739.png)
 
 ### 14.5 出现问题怎么解决
-
-![image-20230801122424932](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230801122424932.png)
 
 第一步 重新编译一次
 
@@ -1180,9 +1142,7 @@ show error
 
 第四步 删除触发器 从新编译
 
-![image-20230801124704387](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230801124704387.png)
-
-### 14.6 怎么解决json格式
+### 14.6 怎么解决 json 格式
 
 ```sql
 create or replace procedure json_test(
@@ -1220,8 +1180,6 @@ end;
 
 结果
 
-![image-20230802102444689](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230802102444689.png)
-
 ## 15 游标
 
 ### 15.1 什么是游标
@@ -1236,7 +1194,7 @@ declare
     cursor 游标名 is sql语句
 begin
   -- 打开游标
-  oepn cur_pricetable;  
+  oepn cur_pricetable;
   loop
     fetch 游标名 into 变量名
     exit when 游标名%notfound;
@@ -1245,7 +1203,7 @@ begin
 end;
 ```
 
-### 15.3案例
+### 15.3 案例
 
 ```sql
 -- 打印出所有id小于4的名字
@@ -1261,8 +1219,6 @@ begin
     end loop;
 end;
 ```
-
-
 
 ## 16 任务
 
@@ -1341,15 +1297,15 @@ patient_register(
 ```sql
 create table patient_register_backups as select * from patient_register;
 alter table  patient_register_backups  add user_name varchar2(10);
-alter table  patient_register_backups  add operate_type varchar2(10); 
-alter table  patient_register_backups  add operate_time date;  
+alter table  patient_register_backups  add operate_type varchar2(10);
+alter table  patient_register_backups  add operate_time date;
 ```
 
 ### 16.2 创建序列
 
-挂号存储过程使用了两个序列，挂号id使用了my_id
+挂号存储过程使用了两个序列，挂号 id 使用了 my_id
 
-REGISTER的创建语法
+REGISTER 的创建语法
 
 ```sql
 create sequence REGISTER
@@ -1361,7 +1317,7 @@ cycle
 nocache ;
 ```
 
-MY_ID的创建语法
+MY_ID 的创建语法
 
 ```sql
 CREATE SEQUENCE my_id
@@ -1371,8 +1327,6 @@ MAXVALUE 10000
 NOCYCLE
 NOCACHE;
 ```
-
-
 
 ### 16.3 创建触发器
 
@@ -1519,7 +1473,7 @@ end ;
 
 ```sql
 -- json 数据 {"name":"张三","id":"1","sex": "男","age" : "19","Telephone" :"111232211","time":"2023-07-21"}
-create or replace procedure add_info(i_data in clob,o_data out clob) as 
+create or replace procedure add_info(i_data in clob,o_data out clob) as
    patient_id number ;
    patient_name varchar2(20) ;
    patient_sex varchar2(10);
@@ -1556,7 +1510,7 @@ end;
 
 ```sql
 -- json数据{"source_id":"3","patient_name":"钱十","doctor_name:"张三"}
-create or replace procedure add_register(i_data in clob,o_data out clob) as 
+create or replace procedure add_register(i_data in clob,o_data out clob) as
    source_id2 number ;
    patient_id2 number;
    patient_name2  varchar2(10);
@@ -1575,7 +1529,7 @@ begin
             'operate_type' value '挂号'
             );
   DBMS_OUTPUT.PUT_LINE('挂号成功！！！！');
-  
+
 end;
 /
 ```
@@ -1584,7 +1538,7 @@ end;
 
 ```sql
 -- json数据{"id","1011"}
-create or replace procedure refund_number(i_data in clob,o_data out clob) as 
+create or replace procedure refund_number(i_data in clob,o_data out clob) as
    REGISTER_ID1 number;
 begin
    REGISTER_ID1 := JSON_VALUE(i_data, '$.id');
@@ -1603,7 +1557,7 @@ end;
 
 ```sql
 -- json数据{"doctor_id":"1004","doctor_name":"李明","department":"皮肤科","price":"33.6"}
-create or replace procedure add_number(i_data in clob,o_data out clob) as 
+create or replace procedure add_number(i_data in clob,o_data out clob) as
    source_id number;
    DOCTOR_ID   NUMBER;
    price      NUMBER(10, 2);
@@ -1674,7 +1628,7 @@ select 1 from dual;
 16.6 调用存储过程实现（建档，挂号，退号，增加号源）
 
 ```sql
-declare 
+declare
   -- Local variables here
   in_data clob := '{"name":"责十","id":"8","sex": "男","age" : "19","Telephone" :"120-3456-7890","time":"2023-08-01"}';
   in_date2 clob := '{"source_id":"4","patient_id":"3","patient_name":"王五","doctor_name":"张三医生"}';
@@ -1684,21 +1638,21 @@ declare
 begin
    -- 建档
    -- add_info(in_data,ou_data);  测试完成
-  
+
   -- 挂号
    --  add_register(in_date2,ou_data); 测试完成
-  
+
   -- 退号
-  refund_number(in_data4,ou_data); 
-  
+  refund_number(in_data4,ou_data);
+
   -- 增加号源
    --  add_number(in_data3,ou_data);  测试完成
-  
+
   DBMS_OUTPUT.PUT_LINE(ou_data);
 end;
 ```
 
-##  17 导入导出
+## 17 导入导出
 
 ### 17.1 注意事项
 
@@ -1713,8 +1667,8 @@ end;
 
 ### 17.2 导出数据格式介绍
 
-1. Dmp格式：dmp是二进制文件，可跨平台，还能包含权限，效率好
-2. Sql格式:sql 格式的文件，可用文本编辑器查看，通用性比较好，效率不如第一种适合小数据量导入导出。尤其注意的是表中不能有大字段(blob,clob.long)，如果有，会报错。
+1. Dmp 格式：dmp 是二进制文件，可跨平台，还能包含权限，效率好
+2. Sql 格式:sql 格式的文件，可用文本编辑器查看，通用性比较好，效率不如第一种适合小数据量导入导出。尤其注意的是表中不能有大字段(blob,clob.long)，如果有，会报错。
 3. Pde 格式: .pde 格式的文件,pde 为 PL/SQL Developer 自有的文件格式，只能用 PL/SQLDeveloper 工具导入导出，不能用文本编辑器查看
 
 ### 17.3 传统方式
@@ -1724,8 +1678,4 @@ end;
 ```
 exp or imp user_name/password@localhost:port/orcl file=d:/1.dmp
 ```
-
-![](C:\Users\易\AppData\Roaming\Typora\typora-user-images\image-20230824145942974.png)
-
-
 
