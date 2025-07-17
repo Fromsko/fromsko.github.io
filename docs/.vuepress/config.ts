@@ -17,9 +17,10 @@ export default defineUserConfig({
 
   theme: plumeTheme({
     // 添加您的部署域名
-    hostname: "https://blog.nextcore.work",
+    hostname: "https://nextcore.work",
 
     plugins: {
+      search: {},
       /**
        * Shiki 代码高亮
        * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
