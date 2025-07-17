@@ -1,7 +1,7 @@
 ---
 title: go-openai SDK
 createTime: 2025/7/17 16:17:20
-permalink: /life/xjscknxhe
+permalink: /package/vckyd5e2/
 ---
 
 # OpenAI Go API Library
