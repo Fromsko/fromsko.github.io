@@ -1,5 +1,5 @@
 ---
-title: AI-agent-notebook
+title: pydantic-ai-agents
 createTime: 2025/7/22 18:50:20
 permalink: /ai/wckcq5f2/
 ---
