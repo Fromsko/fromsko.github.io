@@ -27,6 +27,12 @@
   .image-container:hover .image-bg {
     opacity: 0.4;
   }
+  /* 头像圆形样式 */
+  .image-src,
+  .image-container img {
+    border-radius: 50% !important;
+    object-fit: cover;
+  }
 }
 
 /* 自定义块样式 */
@@ -76,11 +82,14 @@ table {
   transition: color 0.25s;
 }
 
-/* dark/light radial transition */
+/* dark/light radial transition - 优化平滑过渡，防止闪烁 */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  will-change: transform, opacity;
+  isolation: isolate;
+  contain: layout style paint;
 }
 
 ::view-transition-old(root),
@@ -91,4 +100,117 @@ table {
 ::view-transition-new(root),
 .dark::view-transition-old(root) {
   z-index: 9999;
+}
+
+/* 确保 view-transition 完全覆盖，避免闪烁 */
+::view-transition-group(root) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 在 view-transition 期间禁用所有过渡，避免闪烁 */
+html[data-view-transition] *,
+html[data-view-transition] *::before,
+html[data-view-transition] *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
+}
+
+/* 优化主题切换时的元素过渡 */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 禁用某些元素的过渡以避免抖动 */
+img,
+svg,
+video,
+canvas {
+  transition: none !important;
+}
+
+/* 优化首页头像在主题切换时的表现 */
+.VPHero .image-src,
+.VPHero .image-container img {
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  will-change: transform;
+}
+
+/* 侧边栏滚动条美化 - 细且美观 */
+.VPSidebar {
+  /* Firefox 滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.3) transparent;
+
+  /* Webkit 浏览器滚动条样式 */
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(155, 155, 155, 0.3);
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 155, 155, 0.5);
+  }
+}
+
+/* 暗色模式下的滚动条 */
+.dark .VPSidebar {
+  scrollbar-color: rgba(200, 200, 200, 0.2) transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 200, 200, 0.35);
+  }
+}
+
+/* 右侧大纲滚动条美化 */
+.VPDocAside {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.3) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(155, 155, 155, 0.3);
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 155, 155, 0.5);
+  }
+}
+
+.dark .VPDocAside {
+  scrollbar-color: rgba(200, 200, 200, 0.2) transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 200, 200, 0.35);
+  }
 }

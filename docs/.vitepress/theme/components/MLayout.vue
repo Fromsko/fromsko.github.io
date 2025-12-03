@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useData, inBrowser } from 'vitepress'
+import Giscus from '@giscus/vue'
+import { inBrowser, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, provide } from 'vue'
-import Giscus from '@giscus/vue'
 
 import { usePageId } from '../composables'
 
-import MNavVisitor from './MNavVisitor.vue'
 import MDocFooter from './MDocFooter.vue'
+import MNavVisitor from './MNavVisitor.vue'
 
 const { Layout } = DefaultTheme
 const { isDark, theme, frontmatter } = useData()
@@ -44,21 +44,30 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     )}px at ${x}px ${y}px)`,
   ]
 
+  // 标记开始 view-transition，禁用过渡
+  document.documentElement.setAttribute('data-view-transition', 'active')
+
   // @ts-ignore
-  await document.startViewTransition(async () => {
+  const transition = document.startViewTransition(async () => {
     isDark.value = !isDark.value
     updateMetaThemeColor()
     await nextTick()
-  }).ready
+  })
+
+  await transition.ready
 
   document.documentElement.animate(
     { clipPath: isDark.value ? clipPath.reverse() : clipPath },
     {
-      duration: 300,
-      easing: 'ease-in',
+      duration: 400,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
     },
   )
+
+  // 等待动画完全完成，然后移除标记，避免闪烁
+  await transition.finished
+  document.documentElement.removeAttribute('data-view-transition')
 })
 </script>
 
