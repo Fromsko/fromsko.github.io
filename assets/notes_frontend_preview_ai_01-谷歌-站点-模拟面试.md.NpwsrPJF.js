@@ -1,0 +1,23 @@
+import{_ as a,c as n,o as e,ak as p}from"./chunks/framework.BesTj7JQ.js";const u=JSON.parse('{"title":"01-谷歌-站点-模拟面试","description":"","frontmatter":{},"headers":[],"relativePath":"notes/frontend/preview/ai/01-谷歌-站点-模拟面试.md","filePath":"notes/frontend/preview/ai/01-谷歌-站点-模拟面试.md","lastUpdated":1764788734000}'),l={name:"notes/frontend/preview/ai/01-谷歌-站点-模拟面试.md"};function t(r,s,i,c,o,d){return e(),n("div",null,[...s[0]||(s[0]=[p(`<h1 id="_01-谷歌-站点-模拟面试" tabindex="-1">01-谷歌-站点-模拟面试 <a class="header-anchor" href="#_01-谷歌-站点-模拟面试" aria-label="Permalink to &quot;01-谷歌-站点-模拟面试&quot;">​</a></h1><h1 id="_01-谷歌-站点-模拟面试-1" tabindex="-1">01-谷歌-站点-模拟面试 <a class="header-anchor" href="#_01-谷歌-站点-模拟面试-1" aria-label="Permalink to &quot;01-谷歌-站点-模拟面试&quot;">​</a></h1><blockquote><p>本文记录站点设计 Prompt</p></blockquote><h3 id="初始提示词" tabindex="-1">初始提示词 <a class="header-anchor" href="#初始提示词" aria-label="Permalink to &quot;初始提示词&quot;">​</a></h3><div class="language-prompt vp-adaptive-theme line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">prompt</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>很好，希望能够支持响应式，其次就是模拟面试之后可以自动触发导出效果，如果有回答了面试题目的话，可以导出一下，导出正确答案和面试输入的内容，并且希望符合 LLM 对话规范，也就是 assistant 和 user 定义啥的，还有系统 prompt 这样就方便后续代码迁移进行 LLM 判断了。</span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span>还有一个点就是，希望 UI 更加灵动好看一点，支持移动端，还有布局合理优化一下，支持一个章节的内容导出为 PNG 图片。最后就是希望所有逻辑尽可能采用 JS 来支持，还有使用 tailwind：</span></span>
+<span class="line"><span>‍\`\`\`</span></span>
+<span class="line"><span>&lt;!doctype html&gt;</span></span>
+<span class="line"><span>&lt;html&gt;</span></span>
+<span class="line"><span>  &lt;head&gt;</span></span>
+<span class="line"><span>    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4&quot;&gt;&lt;/script&gt;</span></span>
+<span class="line"><span>    &lt;style type=&quot;text/tailwindcss&quot;&gt;</span></span>
+<span class="line"><span>      @theme {</span></span>
+<span class="line"><span>        --color-clifford: #da373d;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    &lt;/style&gt;</span></span>
+<span class="line"><span>  &lt;/head&gt;</span></span>
+<span class="line"><span>  &lt;body&gt;</span></span>
+<span class="line"><span>    &lt;h1 class=&quot;text-3xl font-bold underline text-clifford&quot;&gt;</span></span>
+<span class="line"><span>      Hello world!</span></span>
+<span class="line"><span>    &lt;/h1&gt;</span></span>
+<span class="line"><span>  &lt;/body&gt;</span></span>
+<span class="line"><span>&lt;/html&gt;</span></span>
+<span class="line"><span>‍\`\`\`</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h3 id="markdown-展示问题" tabindex="-1">markdown 展示问题 <a class="header-anchor" href="#markdown-展示问题" aria-label="Permalink to &quot;markdown 展示问题&quot;">​</a></h3><div class="language-prompt vp-adaptive-theme line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">prompt</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>很好，再解决一下，markdown 文本不识别的问题，因为我的内容中引入了很多 markdown 编写的部分，我觉得你可以做到。请继续调整</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br></div></div><p>‍</p><h2 id="code" tabindex="-1">Code <a class="header-anchor" href="#code" aria-label="Permalink to &quot;Code&quot;">​</a></h2><p>‍</p>`,10)])])}const m=a(l,[["render",t]]);export{u as __pageData,m as default};
