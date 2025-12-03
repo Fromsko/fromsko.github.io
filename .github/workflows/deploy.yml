@@ -16,6 +16,8 @@ on:
 # 设置权限
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 # 设置上海时区
 env:
@@ -61,3 +63,5 @@ jobs:
           publish_branch: gh-pages
           # 静态文件所在目录
           publish_dir: dist
+          # 部署到自定义域名
+          destination_dir: fromsko.github.io
