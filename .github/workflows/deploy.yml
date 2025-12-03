@@ -49,8 +49,6 @@ jobs:
 
       # 打包静态文件
       - name: Build
-        env:
-          NODE_ENV: production
         run: pnpm install --ignore-scripts && pnpm run build
 
       # 部署

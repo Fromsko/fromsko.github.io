@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 import { head, nav, sidebar } from './configs'
 
 // 修复基础路径配置
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production' || process.env.CI === 'true'
 const APP_BASE_PATH = isProd ? '/fromsko.github.io/' : '/'
 
 export default defineConfig({
