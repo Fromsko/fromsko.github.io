@@ -51,8 +51,7 @@ jobs:
       - name: Build
         env:
           NODE_ENV: production
-          HUSKY: 0
-        run: pnpm install && pnpm run build
+        run: pnpm install --ignore-scripts && pnpm run build
 
       # 部署
       - name: Deploy
