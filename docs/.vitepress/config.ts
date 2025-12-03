@@ -1,6 +1,6 @@
 import { basename } from 'node:path'
-import { defineConfig } from 'vitepress'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
+import { defineConfig } from 'vitepress'
 
 import { head, nav, sidebar } from './configs'
 
@@ -11,8 +11,8 @@ export default defineConfig({
   base: APP_BASE_PATH ? `/${APP_BASE_PATH}/` : '/',
 
   lang: 'zh-CN',
-  title: '茂茂物语',
-  description: '茂茂的成长之路，包含前端常用知识、源码阅读笔记、各种奇淫技巧、日常提效工具等',
+  title: 'fromsko 知识库',
+  description: 'fromsko 的个人知识库，记录学习、实践与思考',
   head,
 
   lastUpdated: true,
@@ -38,11 +38,11 @@ export default defineConfig({
       label: '目录',
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/maomao1996/vitepress-nav-template' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/fromsko' }],
 
     footer: {
-      message: '如有转载或 CV 的请标注本站原文地址',
-      copyright: 'Copyright © 2019-present maomao',
+      message: '记录学习、实践与思考',
+      copyright: 'Copyright © 2024-present fromsko',
     },
 
     lastUpdated: {
