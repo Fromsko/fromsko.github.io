@@ -3,56 +3,69 @@ layout: home
 layoutClass: 'm-home-layout'
 
 hero:
-  name: 茂茂的
-  text: 前端导航模板
-  tagline: 基于 VitePress 的个人前端导航页面模板
+  name: Fromsko
+  text: 个人知识库
+  tagline: 记录学习、实践与思考 | Pilot-Sim 前端-科技组
   image:
     src: /logo.png
-    alt: 茂茂物语
+    alt: fromsko
   actions:
-    - text: 茂茂物语
-      link: https://notes.fe-mm.com
     - text: 前端导航
       link: /nav/
+      theme: brand
+    - text: 开始探索
+      link: /tasks/
       theme: alt
-    - text: mmPlayer
-      link: https://netease-music.fe-mm.com
-    - text: 测试页
-      link: /test
+    - text: 关于我
+      link: /about/
       theme: alt
+
 features:
-  - icon: 📖
-    title: 前端物语
-    details: 整理前端常用知识点<small>（面试八股文）</small><br />如有异议按你的理解为主，不接受反驳
-    link: https://notes.fe-mm.com/fe/javascript/types
-    linkText: 前端常用知识
-  - icon: 📘
-    title: 源码阅读
-    details: 了解各种库的实现原理<br />学习其中的小技巧和冷知识
-    link: https://notes.fe-mm.com/analysis/utils/only-allow
-    linkText: 源码阅读
+  - icon: 🧭
+    title: 前端导航
+    details: 精选前端开发工具和资源导航，快速找到需要的工具和文档
+    link: /nav/
+    linkText: 前往导航 →
+  - icon: 📝
+    title: 技术笔记
+    details: 记录日常开发中的技术总结和心得体会，涵盖前端、后端、工具等多个领域
+    link: /notes/
+    linkText: 查看笔记 →
+  - icon: 🚀
+    title: 任务清单
+    details: 待办事项和任务计划，管理个人开发和学习任务
+    link: /tasks/
+    linkText: 查看任务 →
+  - icon: 📚
+    title: 学习记录
+    details: 读书笔记和课程学习记录，持续积累知识
+    link: /learning/
+    linkText: 查看学习 →
+  - icon: 🤖
+    title: AI工具
+    details: AI 工具使用记录和技巧分享，探索 AI 在开发中的应用
+    link: /ai/
+    linkText: 查看 AI →
   - icon: 💡
-    title: Workflow
-    details: 在工作中学到的一切<small>（常用库/工具/奇淫技巧等）</small><br />配合 CV 大法来更好的摸鱼
-    link: https://notes.fe-mm.com/workflow/utils/library
-    linkText: 常用工具库
-  - icon: 🧰
-    title: 提效工具
-    details: 工欲善其事，必先利其器<br />记录开发和日常使用中所用到的软件、插件、扩展等
-    link: https://notes.fe-mm.com/efficiency/online-tools
-    linkText: 提效工具
-  - icon: 🐞
-    title: 踩坑记录
-    details: 那些年我们踩过的坑<br />总有一些让你意想不到的问题
-    link: https://notes.fe-mm.com/pit/npm
-    linkText: 踩坑记录
-  - icon: 💯
-    title: 吾志所向，一往无前。
-    details: '<small class="bottom-small">一个想躺平的小开发</small>'
-    link: https://notes.fe-mm.com/mao
+    title: 项目实践
+    details: 个人项目实践和经验总结，记录项目开发过程
+    link: /projects/
+    linkText: 查看项目 →
+  - icon: 👤
+    title: 关于我
+    details: 个人简介、联系方式和项目展示
+    link: /about/
+    linkText: 了解更多 →
 ---
 
 <style>
+/* 头像圆形样式 */
+.m-home-layout .image-src,
+.m-home-layout .image-container img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /*爱的魔力转圈圈*/
 .m-home-layout .image-src:hover {
   transform: translate(-50%, -50%) rotate(666turn);
@@ -67,5 +80,51 @@ features:
   display: block;
   margin-top: 2em;
   text-align: right;
+}
+
+/* 卡片式跳转样式优化 */
+.m-home-layout .VPFeature {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+}
+
+.m-home-layout .VPFeature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.m-home-layout .VPFeature .icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.m-home-layout .VPFeature:hover .icon {
+  transform: scale(1.1);
+}
+
+.m-home-layout .VPFeature .title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--vp-c-text-1);
+}
+
+.m-home-layout .VPFeature .details {
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.m-home-layout .VPFeature .link {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.m-home-layout .VPFeature .link:hover {
+  color: var(--vp-c-brand-2);
 }
 </style>
