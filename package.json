@@ -1,7 +1,7 @@
 {
-  "name": "vitepress-nav-template",
+  "name": "fromsko.github.io",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "基于 VitePress 打造个人前端导航网站",
   "private": true,
   "scripts": {
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maomao1996/vitepress-nav-template.git"
+    "url": "git+https://github.com/fromsko/fromsko.github.io.git"
   },
-  "author": "maomao1996 <1714487678@qq.com>",
+  "author": "fromsko",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maomao1996/vitepress-nav-template/issues"
+    "url": "https://github.com/fromsko/fromsko.github.io/issues"
   },
-  "homepage": "https://github.com/maomao1996/vitepress-nav-template#readme",
+  "homepage": "https://github.com/fromsko/fromsko.github.io#readme",
   "devDependencies": {
     "@femm/prettier": "^1.1.0",
     "@femm/tailwind-config": "^1.0.0",
