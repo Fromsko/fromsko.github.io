@@ -50,7 +50,7 @@ jobs:
       # 打包静态文件
       - name: Build
         env:
-          APP_BASE_PATH: /${{ github.repository }}
+          NODE_ENV: production
         run: pnpm install && pnpm run build
 
       # 部署

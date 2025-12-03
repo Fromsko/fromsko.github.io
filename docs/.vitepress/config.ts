@@ -1,14 +1,15 @@
-import { basename } from 'node:path'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 import { defineConfig } from 'vitepress'
 
 import { head, nav, sidebar } from './configs'
 
-const APP_BASE_PATH = basename(process.env.GITHUB_REPOSITORY || '')
+// 修复基础路径配置
+const isProd = process.env.NODE_ENV === 'production'
+const APP_BASE_PATH = isProd ? '/fromsko.github.io/' : '/'
 
 export default defineConfig({
   outDir: '../dist',
-  base: APP_BASE_PATH ? `/${APP_BASE_PATH}/` : '/',
+  base: APP_BASE_PATH,
 
   lang: 'zh-CN',
   title: 'fromsko 知识库',
