@@ -1,7 +1,7 @@
 {
   "name": "fromsko.github.io",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "基于 VitePress 打造个人前端导航网站",
   "private": true,
   "scripts": {
