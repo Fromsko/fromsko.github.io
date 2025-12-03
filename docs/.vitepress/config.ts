@@ -18,6 +18,9 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
 
+  /* 忽略死链检查 */
+  ignoreDeadLinks: true,
+
   /* markdown 配置 */
   markdown: {
     lineNumbers: true,
